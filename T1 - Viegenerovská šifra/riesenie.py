@@ -20,32 +20,18 @@ ANGLICKE_POCTY = (
     75294515, 4975847,
 )
 
-
+# posudenie znaku
 def je_sifrovane_pismeno(znak: str) -> bool:
-    return "A" <= znak <= "Z" or "a" <= znak <= "z"
+    return "A" <= znak and znak <= "Z"
 
-
+# 1.odstanenie medzier
 def priprav_sifru(povodny_text: str) -> str:
-    """Odstráni medzery a ponechá iba šifrované písmená A–Z."""
     text_bez_medzier = povodny_text.replace(" ", "")
-    return "".join(znak.upper() for znak in text_bez_medzier if je_sifrovane_pismeno(znak))
-
-
-def vrat_formatovanie(povodny_text: str, otvoreny_text: str) -> str:
-    """Dosadí dešifrované písmená a ponechá pôvodné medzery a ostatné znaky."""
-    vysledok = []
-    pozicia = 0
-    for znak in povodny_text:
+    sifra = ""
+    for znak in text_bez_medzier:
         if je_sifrovane_pismeno(znak):
-            if pozicia >= len(otvoreny_text):
-                raise ValueError("Počet dešifrovaných písmen nesedí s pôvodným textom.")
-            vysledok.append(otvoreny_text[pozicia])
-            pozicia += 1
-        else:
-            vysledok.append(znak)
-    if pozicia != len(otvoreny_text):
-        raise ValueError("Počet dešifrovaných písmen nesedí s pôvodným textom.")
-    return "".join(vysledok)
+            sifra += znak
+    return sifra
 
 
 def index_koincidencie(text: str) -> float:
@@ -155,6 +141,23 @@ def desifruj(sifra: str, heslo: str) -> str:
         chr((ord(pismeno) - ord(heslo[i % len(heslo)])) % 26 + ord("A"))
         for i, pismeno in enumerate(sifra)
     )
+
+
+def vrat_formatovanie(povodny_text: str, otvoreny_text: str) -> str:
+    """Dosadí dešifrované písmená a ponechá pôvodné medzery a ostatné znaky."""
+    vysledok = []
+    pozicia = 0
+    for znak in povodny_text:
+        if je_sifrovane_pismeno(znak):
+            if pozicia >= len(otvoreny_text):
+                raise ValueError("Počet dešifrovaných písmen nesedí s pôvodným textom.")
+            vysledok.append(otvoreny_text[pozicia])
+            pozicia += 1
+        else:
+            vysledok.append(znak)
+    if pozicia != len(otvoreny_text):
+        raise ValueError("Počet dešifrovaných písmen nesedí s pôvodným textom.")
+    return "".join(vysledok)
 
 
 def main() -> None:
