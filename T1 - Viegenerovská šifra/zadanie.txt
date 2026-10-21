@@ -1,5 +1,0 @@
-Úloha č. 1, Viegenerovská šifra (8 bodov)
-Dešifrujte všetky nižšie uvedené texty zašifrované vigenerovskou šifrou a určte použité heslá.
-Šifrujú sa len písmená veľkej telegrafnej abecedy (mod 26), všetky ostatné (väčšinou formátovacie)
-znaky ignorujte. Heslo je náhodne vygenerované, primerane dlhé (od 15 do 25 znakov vrátane).
-Pôvodné (priame texty) môžu byť v slovenskom aj anglickom jazyku!
