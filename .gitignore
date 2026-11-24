@@ -1,0 +1,10 @@
+# Lokálne virtuálne prostredia Pythonu
+/.venv-pari/
+/.venv-pari313/
+
+# Cache Pythonu
+__pycache__/
+*.py[cod]
+
+# Metadáta macOS
+.DS_Store
